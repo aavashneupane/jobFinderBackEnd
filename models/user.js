@@ -3,22 +3,35 @@ const mongoose = require('mongoose');
 //employees
 const employees =mongoose.model('employees',{
     firstname:{
-        type: String
+        type: String,
+        required: true
     },
     lastname:{
-        type: String
+        type: String,
+        required: true        
     },
     email:{
-        type: String
+        type: String,
+        required: true,
+        unique: true
     },
     password:{
         type: String
+        ,
+        required: true
     },
     address:{
-        type: String
+        type: String,
+        required: true
+
+    },
+    phone:{
+type: String
     },
         age:{
-        type: Number
+        type: Number,
+        required: true
+
     },
     education:{
         type: String
@@ -27,7 +40,10 @@ const employees =mongoose.model('employees',{
         type: String
     },
     projects:{
-        
+        type:String
+    },
+    photo:{
+        type: String
     }
 
 
@@ -37,7 +53,7 @@ const employees =mongoose.model('employees',{
     
 
 
-})
+
 
 
 
