@@ -66,7 +66,7 @@ router.post('/user/add',auth,
 
 
 //login api call
-router.get('/user/login',function(req, res){
+router.post('/user/login',function(req, res){
     const email = req.body.email;
     const password = req.body.password;
 
@@ -105,3 +105,6 @@ router.get('/user/login',function(req, res){
 
 
 module.exports = router;
+
+
+//
