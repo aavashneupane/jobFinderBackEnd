@@ -7,7 +7,7 @@ const jobs = require('../models/jobmodel');
 const auth =require('../middleware/auth');
 
 
-router.post('/job/insert',function(req, res){
+router.post('/job/insert',auth.verifyUser,function(req, res){
 
     const jobtitle = req.jobtitle;
     const jobtype = req.jobtype;

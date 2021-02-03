@@ -44,7 +44,15 @@ type: String
     },
     photo:{
         type: String
-    }
+    },
+    role:{
+    
+    type: String,
+    enum:['Employees','Employer','Admin'],
+    default:'Customer'
+
+}
+    
 
 
 })

@@ -36,13 +36,13 @@ router.post('/user/add',auth,
         const experience=req.body.experience;
         const projects=req.body.projects;
         const photo=req.body.photo;
-
+        const role=req.body.role;
 
         
         bcrypt.hash(password,10,function(err,hash){
           //  console.log(hash)
             const me =new user({
-                firstname:firstname,lastname:lastname,email:email,password:hash,age:age,address:address,phone:phone,age:age,education:education,experience:experience,projects:projects,photo:photo
+                firstname:firstname,lastname:lastname,email:email,password:hash,age:age,address:address,phone:phone,age:age,education:education,experience:experience,projects:projects,photo:photo,role:role
             });
 
             me.save()
