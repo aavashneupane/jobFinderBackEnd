@@ -9,11 +9,11 @@ const auth =require('../middleware/auth');
 
 router.post('/job/insert',auth.verifyUser,function(req, res){
 
-    const jobtitle = req.jobtitle;
-    const jobtype = req.jobtype;
-    const jobdescription=req.jobdescription;
-    const requiredexperience= req.requiredexperience;
-    const jobprice = req.jobprice;
+    const jobtitle = req.body.jobtitle;
+    const jobtype = req.body.jobtype;
+    const jobdescription=req.body.jobdescription;
+    const requiredexperience= req.body.requiredexperience;
+    const jobprice = req.body.jobprice;
 
     const jobdata =new jobmodel({jobtitle:jobtitle, jobtype:jobtype, 
                                 jobdescription:jobdescription,
@@ -39,6 +39,34 @@ router.delete('/job/delete/:pid',auth.verifyUser,function(req, res){
     .catch(function(err){
         res.status(500).json({message:err})
     })
+
+})
+
+
+//update route
+router.put('/job/update/:pid',auth.verifyUser,function(req, res){
+
+    const jobtitle = req.body.jobtitle;
+    const jobtype = req.body.jobtype;
+    const jobdescription=req.body.jobdescription;
+    const requiredexperience= req.body.requiredexperience;
+    const jobprice = req.body.jobprice;
+
+    const id =req.body.id;
+
+    // const jobdata =new jobmodel({jobtitle:jobtitle, jobtype:jobtype, 
+    //                             jobdescription:jobdescription,
+    //                              requiredexperience:requiredexperience, 
+    //                              jobprice:jobprice});
+
+    jobs.updateOne({_id:id},{jobtitle:jobtitle},{jobtype:jobtype},{jobdescription:jobdescription},{requiredexperience},{jobprice})
+    .then(function(result){
+        res.status(200).json({message:"Job has been updated"})
+    })
+    .catch(function(err){
+        res.status(500).json({message:err})
+    })
+
 
 })
 
