@@ -28,9 +28,9 @@ const employees =mongoose.model('employees',{
     phone:{
 type: String
     },
-        age:{
-        type: Number,
-        required: true
+    age:{
+    type: Number,
+    required: true
 
     },
     education:{
