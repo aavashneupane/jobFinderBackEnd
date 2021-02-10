@@ -46,13 +46,13 @@ router.delete('/job/delete/:pid',auth.verifyUser,function(req, res){
 //update route
 router.put('/job/update',function(req, res){
 
-    const id =req.body.id;
+    
     const jobtitle = req.body.jobtitle;
     const jobtype = req.body.jobtype;
     const jobdescription=req.body.jobdescription;
     const requiredexperience= req.body.requiredexperience;
     const jobprice = req.body.jobprice;
-
+    const id =req.body._id;
 
     jobs.updateOne({_id:id},{jobtitle:jobtitle,jobtype:jobtype,jobdescription:jobdescription,requiredexperience:requiredexperience,jobprice:jobprice})
     .then(function(result){

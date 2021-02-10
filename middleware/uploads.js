@@ -12,11 +12,23 @@ filename:function(req,file,cb){
 
 });
 
+const filefilter=function(req,file,cb){
+    if(file.mimetype=='image/jpeg'||file.mimetype=='image/gif'||file.mimetype=='image/png'){
+
+        cb(null,true)
+    }
+    else{
+        cb(null,false)
+    }
+}
+
+
 
 
 
 const upload = multer({
-    storage:storage
+    storage:storage,
+    fileFilter:filefilter
 });
 
 
