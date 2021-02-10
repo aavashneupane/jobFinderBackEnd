@@ -104,38 +104,38 @@ router.post('/user/login',function(req, res){
 })
 
 
-// //update route
-// router.put('/user/update',auth.verifyUser,function(req, res){
+//update route
+router.put('/user/update',auth.verifyUser,function(req, res){
 
-//       const firstname=req.body.firstname;
-//         const lastname=req.body.lastname;
-//         const email=req.body.email;
-//         const password=req.body.password;
-//         const age=req.body.age;
-//         const address=req.body.address;
-//         const phone=req.body.phone;
-//         const education=req.body.education;
-//         const experience=req.body.experience;
-//         const projects=req.body.projects;
-//         const photo=req.body.photo;
-//         const role=req.body.role;
-
-
-//     const id =req.body.id;
+      const firstname=req.body.firstname;
+        const lastname=req.body.lastname;
+        const email=req.body.email;
+        const password=req.body.password;
+        const age=req.body.age;
+        const address=req.body.address;
+        const phone=req.body.phone;
+        const education=req.body.education;
+        const experience=req.body.experience;
+        const projects=req.body.projects;
+        const photo=req.body.photo;
+        const role=req.body.role;
 
 
-//     jobs.updateOne({id:id},{firstname:firstname},{lastname:lastname},{email:email},
-//         {password:password},{age:age},{address:address},{phone:phone},
-//         {age:age},{education:education},{experience:experience},{projects:projects},{photo:photo},{role:role})
-//     .then(function(result){
-//         res.status(200).json({message:"User has been updated"})
-//     })
-//     .catch(function(err){
-//         res.status(500).json({message:err})
-//     })
+    const id =req.body.id;
 
 
-// })
+    jobs.updateOne({id:id},{firstname:firstname},{lastname:lastname},{email:email},
+        {password:password},{age:age},{address:address},{phone:phone},
+        {age:age},{education:education},{experience:experience},{projects:projects},{photo:photo},{role:role})
+    .then(function(result){
+        res.status(200).json({message:"User has been updated"})
+    })
+    .catch(function(err){
+        res.status(500).json({message:err})
+    })
+
+
+})
 
 
 
