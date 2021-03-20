@@ -46,10 +46,10 @@ if(req.file==undefined){
 
         
         bcrypt.hash(password,10,function(err,hash){
-          //  console.log(hash)
-            const me =new user({
-                firstname:firstname,lastname:lastname,email:email,password:hash,age:age,address:address,phone:phone,age:age,education:education,experience:experience,projects:projects,photo:req.file.path,role:role
-            });
+            //  console.log(hash)
+              const me =new user({
+                  firstname:firstname,lastname:lastname,email:email,password:hash,age:age,address:address,phone:phone,age:age,education:education,experience:experience,projects:projects,photo:req.file.path,role:role
+              });
 
             me.save()
             .then(function(result){

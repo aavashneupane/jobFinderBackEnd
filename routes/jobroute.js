@@ -15,7 +15,7 @@ router.post('/job/insert',auth.verifyUser,function(req, res){
     const requiredexperience= req.body.requiredexperience;
     const jobprice = req.body.jobprice;
 
-    const jobdata =new jobmodel({jobtitle:jobtitle, jobtype:jobtype, 
+    const jobdata =new jbmodel({jobtitle:jobtitle, jobtype:jobtype, 
                                 jobdescription:jobdescription,
                                  requiredexperience:requiredexperience, 
                                  jobprice:jobprice});
