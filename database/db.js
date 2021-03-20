@@ -4,3 +4,5 @@ mongoose.connect('mongodb://127.0.0.1:27017/assignmentfinal',{
  useCreateIndex: true,
  useUnifiedTopology : true
 })
+.then(() => console.log("Database connected successfully..."))
+.catch((error) => console.log(error));
