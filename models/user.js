@@ -84,13 +84,13 @@ USERSCHEMA.methods.generateAuthToken = async function () {
   };
 
 // hide some attributes of user model while sending json response 
-USERSCHEMA.methods.toJSON = function () {
-    let user = this.toObject();
-    delete user.password;
-    delete user.createdAt;
-    delete user.__v;
-    return user;
-};
+// USERSCHEMA.methods.toJSON = function () {
+//     let user = this.toObject();
+//     delete user.password;
+//     delete user.createdAt;
+//     delete user.__v;
+//     return user;
+// };
 
 const USER = mongoose.model('user', USERSCHEMA);
 module.exports =USER;
