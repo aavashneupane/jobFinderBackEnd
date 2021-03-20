@@ -8,67 +8,7 @@ const jwt = require('jsonwebtoken');
 const upload = require('../middleware/uploads');
 
 //register api
-router.post('/user/add',auth,
 
-
-   upload.single('photo'),
-
-    function(req, res,next) {
-if(req.file==undefined){
-    return res.status(400).json({
-        message:"Invalid image format!!"
-    })
-}
-
-     //console.log(req.file);
-        const errors=validationResult(req);
-        console.log(errors.array());
-
-        if(!errors.isEmpty()){
-        res.status(400).json(errors.array());
-            
-        }
-        else{
-
-        const firstname=req.body.firstname;
-        const lastname=req.body.lastname;
-        const email=req.body.email;
-        const password=req.body.password;
-        const age=req.body.age;
-        const address=req.body.address;
-        const phone=req.body.phone;
-        const education=req.body.education;
-        const experience=req.body.experience;
-        const projects=req.body.projects;
-        
-        const photo=req.body.photo;
-        const role=req.body.role;
-
-        
-        bcrypt.hash(password,10,function(err,hash){
-            //  console.log(hash)
-              const me =new user({
-                  firstname:firstname,lastname:lastname,email:email,password:hash,age:age,address:address,phone:phone,age:age,education:education,experience:experience,projects:projects,photo:req.file.path,role:role
-              });
-
-            me.save()
-            .then(function(result){
-                //insert success
-                res.status(201).json({message:"User registration successfull"});
-            })
-            .catch(function(e){
-                res.status(500).json({message:e})
-
-            });
-        })
-
-
-        
-
-
-        }
-
-        });
 
 
 //login api call
