@@ -13,6 +13,7 @@ const apirouter = express.Router();
 apirouter.post('/sign-up', SignUpController.registerUser);
 apirouter.post('/sign-in', SignInController.signIn);
 apirouter.post('/sign-out', checkAuth, SignOutController.signOut);
+apirouter.post("/sign-out-all", checkAuth, SignOutController.signOutAll);
 module.exports = apirouter;
 
 //job requests
