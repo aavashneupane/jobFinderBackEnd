@@ -28,6 +28,21 @@ const SIGNIN = (signInData) => {
 
     return Joi.validate(signInData, signInSchema, OPTIONS);
 }
+
+//add job validation
+const JOB = (jobData) => {
+    const jobSchema = Joi.object().keys({
+      jobtitle: Joi.number().min(0).required().label("jobtitle"),
+      jobtype: Joi.number().min(0).required().label("jobtype"),
+      jobdescription: Joi.number().min(0).required().label("jobdescription"),
+      requiredexperience: Joi.number().min(0).required().label("requiredexperience"),
+      jobprice: Joi.number().min(0).required().label("jobprice"),
+      date: Joi.date().required().label("Date"),
+      creator: Joi.string().required().label("Creator"),
+    });
+    return Joi.validate(jobData, jobSchema, OPTIONS);
+};
+
 module.exports = {
-    SIGNUP, SIGNIN
-}
+    SIGNUP, SIGNIN,JOB
+};
