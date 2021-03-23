@@ -31,5 +31,10 @@ router.put('/profile/editProfileCompany',[
     check('foundedin',"Date must be entered").not().isEmpty(),
 ],auth.verifyUser,profile.editProfileCompany)
 
+router.put('/profile/editProfileCustomer',[
+    check('projects',"Project/s must be entered").not().isEmpty(),
+    check('experience',"Experience must be entered").not().isEmpty(),
+],auth.verifyUser,profile.editProfileCustomer)
+
 
 module.exports = router;

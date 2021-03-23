@@ -58,6 +58,18 @@ class profileController {
 
     }
     editProfileCustomer(req, res) {
+        const projects = req.body.projects;
+        const experience = req.body.experience;
+         const id = req.body._id;
+         console.log(req.body)
+         profile.findOneAndUpdate({_id:id},{projects:projects, experience:experience})
+     
+         .then(function(result){
+             res.status(200).json({message: "Customer detail has been updated sucessfully" })
+         })
+         .catch(function(e){
+             res.status(500).json({message : e});
+         })
 
     }
 
