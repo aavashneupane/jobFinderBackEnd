@@ -7,19 +7,17 @@ const jobs = require('../models/jobmodel');
 const auth =require('../middleware/auth');
 
 
+const jobController = require('../controllers/postJobController');
+const job = new jobController();
+
+// add a job
+router.post('/job/add',[
+
+],auth.verifyUser,auth.verifyCompany,job.addJob)
+
 
 //delete job   
-router.delete('/job/delete/:pid',auth.verifyUser,function(req, res){
-    const pid = req.params.pid;
-    jobs.deleteOne({_id:pid})
-    .then(function(result){
-        res.status(200).json({message:"Job has been deleted"})
-    })
-    .catch(function(err){
-        res.status(500).json({message:err})
-    })
-
-})
+router.delete('/job/delete/:pid',auth.verifyUser,auth.verifyCompany,job.deleteJob)
 
 
 //update route

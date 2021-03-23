@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
-
+var User = require("./user");
+const SCHEMA=mongoose.Schema;
 //jobs
-const jobs =mongoose.model('jobs',{
+const jobSchema =new SCHEMA({
     jobtitle:{
         type: String,
       //  required: true
@@ -20,15 +21,22 @@ const jobs =mongoose.model('jobs',{
         type: String,
         
     },
-
     jobprice:{
-        tye: String,
-    }
+        type: String,
+    },
+    creator: {
+        type: SCHEMA.Types.ObjectId,
+        ref: User,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+      }
     
     
 
 })
 
 
-    
-module.exports = jobs;
+const JOB= mongoose.model("job",jobSchema);   
+module.exports = JOB;

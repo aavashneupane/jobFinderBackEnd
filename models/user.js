@@ -39,7 +39,7 @@ const registration =mongoose.model('user',{
     role:{
     
     type: String,
-    enum:['Recruiter','Customer','Admin'],
+    enum:['Company','Customer','Admin'],
     default:'Customer'
 
 },
