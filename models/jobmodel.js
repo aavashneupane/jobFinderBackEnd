@@ -23,7 +23,7 @@ const jobs =mongoose.model('jobs',{
 
     jobprice:{
         tye: String,
-    },
+    }
     
     
 
