@@ -37,9 +37,6 @@ if(req.file==undefined){
         const age=req.body.age;
         const address=req.body.address;
         const phone=req.body.phone;
-        const education=req.body.education;
-        const experience=req.body.experience;
-        const projects=req.body.projects;
         
         const photo=req.body.photo;
         const role=req.body.role;
@@ -48,7 +45,7 @@ if(req.file==undefined){
         bcrypt.hash(password,10,function(err,hash){
             //  console.log(hash)
               const me =new user({
-                  firstname:firstname,lastname:lastname,email:email,password:hash,age:age,address:address,phone:phone,age:age,education:education,experience:experience,projects:projects,photo:req.file.path,role:role
+                  firstname:firstname,lastname:lastname,email:email,password:hash,age:age,address:address,phone:phone,age:age,photo:req.file.path,role:role
               });
 
             me.save()

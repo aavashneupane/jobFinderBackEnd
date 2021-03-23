@@ -33,15 +33,6 @@ type: String
     required: true
 
     },
-    education:{
-        type: String
-    },
-    experience:{
-        type: String
-    },
-    projects:{
-        type:String
-    },
     photo:{
         type: String
     },
