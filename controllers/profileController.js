@@ -1,9 +1,13 @@
 const profile = require('../models/profilemodel');
+const user = require('../models/user')
+
+
 
 class profileController {
 
 
     addProfileCustomer(req, res) {
+
         const projects = req.body.projects;
         const experience = req.body.experience;
 

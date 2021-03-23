@@ -38,20 +38,9 @@ jobs.find()
 
 })
 
-router.get('/job/show/:id',function(req, res){
+//to show single job
+router.get('/showJob/:id',  hotel.getSingleHotel);
 
-    const id =req.params.id;
-
-    jobs.findOne({_id:id})
-    .then(function(result){
-        res.status(200).json(result)
-    })
-    .catch(function(err){
-        res.status(500).json({message:err})
-    })
-    
-    
-    })
 
 
 
