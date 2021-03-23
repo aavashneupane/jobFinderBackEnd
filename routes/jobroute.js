@@ -41,16 +41,16 @@ jobs.find()
 })
 
 //to show single job
-router.get('/job/showSingle/:id',  job.getSinglejob);
+router.get('/job/showSingle/:id',auth.verifyUser,  job.getSinglejob);
 
 
 
 
 
 //apply for a job 
-router.post('/job/applyJob/:id',  jobapply.applyJob);
+router.post('/job/applyJob/:id',auth.verifyUser,auth.verifyCompany,jobapply.applyJob);
 //show status of job
-router.get('/job/showStatus/:id',  jobapply.showStatus);
+router.get('/job/showStatus/:id',auth.verifyUser,auth.verifyCompany||auth.verifyCustomer, jobapply.showStatus);
 
 
 

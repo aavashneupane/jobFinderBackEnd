@@ -50,7 +50,7 @@ class jobController {
         const jobprice = req.body.jobprice;
         const id = req.body._id;
 
-        jobs.updateOne({ _id: id }, { jobtitle: jobtitle, jobtype: jobtype, jobdescription: jobdescription, requiredexperience: requiredexperience, jobprice: jobprice })
+        job.updateOne({ _id: id }, { jobtitle: jobtitle, jobtype: jobtype, jobdescription: jobdescription, requiredexperience: requiredexperience, jobprice: jobprice })
             .then(function (result) {
                 res.status(200).json({ message: "Job has been updated" })
             })
