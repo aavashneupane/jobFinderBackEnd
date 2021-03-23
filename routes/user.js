@@ -6,11 +6,23 @@ const bcrypt=require("bcryptjs");
 const {check,validationResult} = require('express-validator');
 const jwt = require('jsonwebtoken');
 const upload = require('../middleware/uploads');
-//const authController = require('../controller/authController')
+const authController = require('../controllers/authController')
 const userController = require('../controllers/userController');
 
-//register api
 
+const auth = new authController();
+const token = tokenVerification.verifyUser;
+
+//register api
+router.post('/user/add', [
+    check('firstname',"First Name must be entered").not().isEmpty(),
+    check('lastname',"Last Name must be entered").not().isEmpty(),
+    check('email',"Invalid Email").isEmail(),
+    check('password', "it must be 2 to 8 length long").not().isEmpty().isLength({ min: 8, max: 16 }),
+    check('address',"Address must be entered").not().isEmpty(),
+    check('age',"Invalid age").isNumeric()],
+    auth.register
+);
 
 //login api call
 router.post('/user/login',function(req, res){
