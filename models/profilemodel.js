@@ -20,7 +20,10 @@ const profileSchema =new SCHEMA({
         type: SCHEMA.Types.ObjectId,
         ref: User,
     },
-
+    createdAt: {
+        type: Date,
+        default: Date.now,
+      }
     
 
 
