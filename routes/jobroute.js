@@ -21,26 +21,7 @@ router.delete('/job/delete/:pid',auth.verifyUser,auth.verifyCompany,job.deleteJo
 
 
 //update route
-router.put('/job/update',function(req, res){
-
-    
-    const jobtitle = req.body.jobtitle;
-    const jobtype = req.body.jobtype;
-    const jobdescription=req.body.jobdescription;
-    const requiredexperience= req.body.requiredexperience;
-    const jobprice = req.body.jobprice;
-    const id =req.body._id;
-
-    jobs.updateOne({_id:id},{jobtitle:jobtitle,jobtype:jobtype,jobdescription:jobdescription,requiredexperience:requiredexperience,jobprice:jobprice})
-    .then(function(result){
-        res.status(200).json({message:"Job has been updated"})
-    })
-    .catch(function(err){
-        res.status(500).json({message:err})
-    })
-
-
-})
+router.put('/job/update',auth.verifyUser,auth.verifyCompany,job.updateJob)
 
 
 //get apii
