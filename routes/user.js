@@ -9,11 +9,8 @@ const upload = require('../middleware/uploads');
 
 //register api
 router.post('/user/add',auth,
-
-
-   upload.single('photo'),
-
-    function(req, res,next) {
+upload.single('photo'),
+function(req, res,next) {
 if(req.file==undefined){
     return res.status(400).json({
         message:"Invalid image format!!"
