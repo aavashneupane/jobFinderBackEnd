@@ -8,7 +8,9 @@ const auth =require('../middleware/auth');
 
 
 const jobController = require('../controllers/postJobController');
+const applyJobController = require('../controllers/applyJobController');
 const job = new jobController();
+const jobapply = new applyJobController();
 
 // add a job
 router.post('/job/add',[
@@ -44,6 +46,9 @@ router.get('/job/showSingle/:id',  job.getSinglejob);
 
 
 
+
+//apply for a job 
+router.post('/job/applyJob/:id',  jobapply.applyJob);
 
 
 

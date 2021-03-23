@@ -27,6 +27,7 @@ const jobSchema =new SCHEMA({
     creator: {
         type: SCHEMA.Types.ObjectId,
         ref: User,
+        
     },
     createdAt: {
         type: Date,

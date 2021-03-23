@@ -8,7 +8,7 @@ class jobController {
         const jobdescription = req.body.jobdescription;
         const requiredexperience = req.body.requiredexperience;
         const jobprice = req.body.jobprice;
-        const user = req.user.id;
+        const creator=req.user;
 
         const jobdata = new job({
             jobtitle: jobtitle,
@@ -16,6 +16,7 @@ class jobController {
             jobdescription: jobdescription,
             requiredexperience: requiredexperience,
             jobprice: jobprice,
+            creator:creator
 
         });
         jobdata.save()
