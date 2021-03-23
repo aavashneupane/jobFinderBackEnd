@@ -2,19 +2,19 @@ const job = require("../models/jobmodel");
 const applyjob = require("../models/applymodel");
 
 class applyJobController {
-       
+
     applyJob(req, res) {
-        
-        const userid=req.user;
+
+        const userid = req.user;
         const jobid = req.params.id;
-       // const a=job.findOne({_id : jobid})
-        
+        // const a=job.findOne({_id : jobid})
+
 
         const jobdata = new applyjob({
-        
+
             userid: userid,
-            jobid:jobid,
-        
+            jobid: jobid,
+
 
         });
         jobdata.save()
@@ -28,23 +28,20 @@ class applyJobController {
     }
 
 
-    showStatus(req, res){
-    
-        const userid=req.user;
+    showStatus(req, res) {
+        const userid = req.user;
         const appliedid = req.params.id;
-        const confirmStatus=req.params.confirmStatus ;
-        
-
+        const confirmStatus = req.params.confirmStatus;
         applyjob.findOne({
-            _id : appliedid,
-           
+            _id: appliedid,
+
         })
-        .then(function(data){
-            res.status(200).json(data.confirmStatus);
-        })
-        .catch(function(e){
-            res.status(500).json({message: e})
-        })
+            .then(function (data) {
+                res.status(200).json(data.confirmStatus);
+            })
+            .catch(function (e) {
+                res.status(500).json({ message: e })
+            })
     }
 
 }

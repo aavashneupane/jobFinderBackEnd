@@ -18,5 +18,13 @@ router.post('/profile/addCustomer',[
     check('experience',"Experience must be entered").not().isEmpty(),
 ],auth.verifyUser,profile.addProfileCustomer)
 
+router.post('/profile/addCompany',[
+    check('company',"Name must be entered").not().isEmpty(),
+    check('foundedin',"Date must be entered").not().isEmpty(),
+],auth.verifyUser,profile.addProfileCompany)
+
+router.get('/profile/:id',auth.verifyUser,  profile.showProfileCompany);
+router.get('/profile/:id',auth.verifyUser,  profile.showProfileCustomer);
+
 
 module.exports = router;

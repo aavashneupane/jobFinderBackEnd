@@ -14,7 +14,7 @@ const profileSchema =new SCHEMA({
         type:String
     },
     foundedin:{
-        type:Date
+        type:String
     },
     creator: {
         type: SCHEMA.Types.ObjectId,
