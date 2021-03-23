@@ -39,7 +39,7 @@ jobs.find()
 })
 
 //to show single job
-router.get('/showJob/:id',  hotel.getSingleHotel);
+router.get('/job/showSingle/:id',  job.getSinglejob);
 
 
 
