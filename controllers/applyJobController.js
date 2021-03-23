@@ -27,6 +27,27 @@ class applyJobController {
             });
     }
 
+
+    showStatus(req, res){
+    
+        const userid=req.user;
+        const appliedid = req.params.id;
+        const confirmStatus=req.params.confirmStatus ;
+        
+
+        applyjob.findOne({
+            _id : appliedid,
+           
+        })
+        .then(function(data){
+            res.status(200).json(data.confirmStatus);
+        })
+        .catch(function(e){
+            res.status(500).json({message: e})
+        })
+    }
+
 }
+
 
 module.exports = applyJobController;

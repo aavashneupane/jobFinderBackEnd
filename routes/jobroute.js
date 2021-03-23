@@ -49,6 +49,8 @@ router.get('/job/showSingle/:id',  job.getSinglejob);
 
 //apply for a job 
 router.post('/job/applyJob/:id',  jobapply.applyJob);
+//show status of job
+router.get('/job/showStatus/:id',  jobapply.showStatus);
 
 
 
