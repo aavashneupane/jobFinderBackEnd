@@ -18,47 +18,16 @@ router.post('/user/add', [
     check('firstname',"First Name must be entered").not().isEmpty(),
     check('lastname',"Last Name must be entered").not().isEmpty(),
     check('email',"Invalid Email").isEmail(),
-    check('password', "it must be 2 to 8 length long").not().isEmpty().isLength({ min: 8, max: 16 }),
+    check('password', "You must enter your password").not().isEmpty(),
+    check('phone', "Invalid Phone Number!!!").isMobilePhone(),
     check('address',"Address must be entered").not().isEmpty(),
-    check('age',"Invalid age").isNumeric()],
+    check('age',"Invalid age").isNumeric(),
+    check('password', "it must be 8 to 16 length long").isLength({ min: 8, max: 16 })],
     auth.register
 );
 
 //login api call
-router.post('/user/login',function(req, res){
-    const email = req.body.email;
-    const password = req.body.password;
-
-    user.findOne({email:email})
-    .then(function(employeedata){
-        if(employeedata===null){
-        return res.status(403).json({message:"Email or password Invalid"})
-        }
-
-        bcrypt.compare(password, employeedata.password,function(err,result){
-
-            if(result===false){
-                return res.status(403).json({message:"Email or password Invalid"})
-            }
-
-            //user is validated
-         //   res.send("Authenticated")
-
-            const token=jwt.sign({userId:employeedata._id},'secretkey' );
-            //res.send(token);
-            res.status(200).json({
-                message:"login success",
-                token:token
-            })
-
-
-
-        })
-
-    })
-    .catch(function(e){console.log(e)})
-
-})
+router.post('/user/login', auth.login)
 
 
 //update route

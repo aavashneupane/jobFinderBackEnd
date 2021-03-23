@@ -28,7 +28,7 @@ class AuthController{
                   bcrypt.hash(password, 10 , function(err, hash){
                     //console.log(hash)  
                     const me =new user({
-                        firstname:firstname,lastname:lastname,email:email,password:hash,age:age,address:address,phone:phone,age:age,photo:req.file.path,role:role
+                        firstname:firstname,lastname:lastname,email:email,password:hash,age:age,address:address,phone:phone,age:age,role:role
                     });
                   me.save()
                   .then(function(Result){
@@ -58,11 +58,11 @@ class AuthController{
       .then(function(userData){
         console.log(userData)
         if (userData === null){
-         return res.status(401).json({message : "Inavalid!!! Email or Passwordkkkkk", success: false,})
+         return res.status(401).json({message : "Invalid!!! Email or Passwordkkkkk", success: false,})
         }
         bcrypt.compare(password, userData.password, function(err, result){
           if(result===false){
-            return res.status(401).json({message : "Inavalid!!! Email or Password", success: false,})
+            return res.status(401).json({message : "Invalid!!! Email or Password", success: false,})
           }
           // username and password valid
           const token = jwt.sign({userID : userData._id },'secrectkey');

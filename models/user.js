@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 //employees
-const employees =mongoose.model('employees',{
+const registration =mongoose.model('user',{
     firstname:{
         type: String,
         required: true
@@ -26,7 +26,7 @@ const employees =mongoose.model('employees',{
 
     },
     phone:{
-type: String
+        type: String
     },
     age:{
     type: Number,
@@ -39,7 +39,7 @@ type: String
     role:{
     
     type: String,
-    enum:['Employees','Employer','Admin'],
+    enum:['Recruiter','Customer','Admin'],
     default:'Customer'
 
 }
@@ -49,15 +49,5 @@ type: String
 })
 
 
-    
 
-
-
-
-
-
-
-
-
-
-module.exports = employees;
+module.exports = registration;
