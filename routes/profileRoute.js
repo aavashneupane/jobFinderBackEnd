@@ -26,5 +26,10 @@ router.post('/profile/addCompany',[
 router.get('/profile/:id',auth.verifyUser,  profile.showProfileCompany);
 router.get('/profile/:id',auth.verifyUser,  profile.showProfileCustomer);
 
+router.put('/profile/editProfileCompany',[
+    check('company',"Name must be entered").not().isEmpty(),
+    check('foundedin',"Date must be entered").not().isEmpty(),
+],auth.verifyUser,profile.editProfileCompany)
+
 
 module.exports = router;

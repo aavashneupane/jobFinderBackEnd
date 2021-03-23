@@ -43,6 +43,18 @@ class profileController {
 
 
     editProfileCompany(req, res) {
+        const company = req.body.company;
+        const foundedin = req.body.foundedin;
+         const id = req.body._id;
+         console.log(req.body)
+         profile.findOneAndUpdate({_id:id},{company:company,foundedin:foundedin})
+     
+         .then(function(result){
+             res.status(200).json({message: "Company detail has been updated sucessfully" })
+         })
+         .catch(function(e){
+             res.status(500).json({message : e});
+         })
 
     }
     editProfileCustomer(req, res) {
