@@ -10,10 +10,12 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cors());
 const db = require('./database/db');
 const user = require('./routes/user');
+const profileRoute = require('./routes/profileRoute');
 const jobroute = require('./routes/jobroute');
 
 
 app.use(user);
+app.use(profileRoute);
 app.use(jobroute);
 
 

@@ -8,7 +8,7 @@ class profileController{
         const experience=req.body.experience;
 
         const addCustomerProfile = new profile({
-            projects:projects,experience:experience
+            projects:projects,experience:experience,
         });
         addCustomerProfile.save()
         .then(function(result){

@@ -46,7 +46,7 @@ module.exports.verifyUser = function(req,res, next){
  
      next();
  }
- module.exports.verifycustomer = function(req,res,next){
+ module.exports.verifyCustomer = function(req,res,next){
     if(!req.user){
         return res.status(402).json({message : "Unauthorized customer!!"});
     }
