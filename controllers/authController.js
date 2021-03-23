@@ -51,18 +51,18 @@ class AuthController{
     }
 
     login(req, res){
-        const email = req.body.email;
-      const password = req.body.password;
+    const email = req.body.email;
+    const password = req.body.password;
       console.log(req.body)
       user.findOne({email : email})
       .then(function(userData){
-        console.log(userData)
+        console.log(userData);
         if (userData === null){
-         return res.status(401).json({message : "Invalid!!! Email or Passwordkkkkk", success: false,})
+         return res.status(401).json({message : "Inavalid!!! Email or Passwordkkkkk", success: false,})
         }
         bcrypt.compare(password, userData.password, function(err, result){
           if(result===false){
-            return res.status(401).json({message : "Invalid!!! Email or Password", success: false,})
+            return res.status(401).json({message : "Inavalid!!! Email or Password", success: false,})
           }
           // username and password valid
           const token = jwt.sign({userID : userData._id },'secrectkey');
@@ -78,6 +78,7 @@ class AuthController{
       .catch()
     }
 
+    
 
 }
 

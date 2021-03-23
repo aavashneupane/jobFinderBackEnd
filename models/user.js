@@ -42,7 +42,11 @@ const registration =mongoose.model('user',{
     enum:['Recruiter','Customer','Admin'],
     default:'Customer'
 
-}
+},
+    createdAt: {
+    type: Date,
+    default: Date.now,
+  }
     
 
 
