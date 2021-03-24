@@ -15,7 +15,7 @@ const jobapply = new applyJobController();
 // add a job
 router.post('/job/add',[
 
-],auth.verifyUser,auth.verifyCompany,job.addJob)
+],job.addJob)
 
 
 //delete job   
@@ -23,7 +23,7 @@ router.delete('/job/delete/:pid',auth.verifyUser,auth.verifyCompany,job.deleteJo
 
 
 //update route
-router.put('/job/update',auth.verifyUser,auth.verifyCompany,job.updateJob)
+router.put('/job/update',job.updateJob)
 
 
 //get apii

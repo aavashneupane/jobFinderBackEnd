@@ -59,10 +59,12 @@ class AuthController{
         console.log(userData);
         if (userData === null){
          return res.status(401).json({message : "Inavalid!!! Email or Passwordkkkkk", success: false,})
+         console.log("Status-"+401+": Login unsucessfull")
         }
         bcrypt.compare(password, userData.password, function(err, result){
           if(result===false){
             return res.status(401).json({message : "Inavalid!!! Email or Password", success: false,})
+            console.log("Status-"+401+": Login unsucessfull")
           }
           // username and password valid
           const token = jwt.sign({userID : userData._id },'secrectkey');
@@ -71,6 +73,7 @@ class AuthController{
             token : token,
             success: true,
           })
+          console.log("Status-"+201+": Login sucessfully Done")
 
         } )
         
