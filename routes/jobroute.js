@@ -15,7 +15,7 @@ const jobapply = new applyJobController();
 // add a job
 router.post('/job/add',[
 
-],job.addJob)
+],auth.verifyUser,auth.verifyCompany,job.addJob)
 
 
 //delete job   

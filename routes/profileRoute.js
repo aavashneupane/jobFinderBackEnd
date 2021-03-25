@@ -26,7 +26,7 @@ router.post('/profile/addCompany',[
 
 
 router.get('/profile1/:id',auth.verifyUser,auth.verifyCompany,  profile.showProfileCompany);
-router.get('/profile2/:id',auth.verifyUser,auth.verifyCustomer,  profile.showProfileCustomer);
+router.get('/profile2/:id',auth.verifyUser, profile.showProfileCustomer);
 
 
 router.put('/profile/editProfileCompany',[

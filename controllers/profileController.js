@@ -1,4 +1,4 @@
-const profile = require('../models/profilemodel');
+//const profile = require('../models/profilemodel');
 const user = require('../models/user')
 
 
@@ -11,7 +11,7 @@ class profileController {
         const projects = req.body.projects;
         const experience = req.body.experience;
 
-        const addCustomerProfile = new profile({
+        const addCustomerProfile = new user({
             projects: projects, experience: experience,creator: creator
         });
         addCustomerProfile.save()
@@ -29,7 +29,7 @@ class profileController {
         const company = req.body.company;
         const foundedin = req.body.foundedin;
 
-        const addCompanyProfile = new profile({
+        const addCompanyProfile = new user({
             company:company,foundedin:foundedin,creator: creator
         });
         addCompanyProfile.save()
@@ -43,11 +43,17 @@ class profileController {
 
 
     editProfileCompany(req, res) {
+        const firstname = req.body.firstname;
+        const lastname = req.body.lastname;
+        const age = req.body.age;
+        const address = req.body.address;
+        const phone = req.body.phone;
+        
         const company = req.body.company;
         const foundedin = req.body.foundedin;
          const id = req.body._id;
          console.log(req.body)
-         profile.findOneAndUpdate({_id:id},{company:company,foundedin:foundedin})
+         user.findOneAndUpdate({_id:id},{firstname:firstname,lastname:lastname,age:age,address:address,phone:phone,company:company,foundedin:foundedin})
      
          .then(function(result){
              res.status(200).json({message: "Company detail has been updated sucessfully" })
@@ -58,11 +64,17 @@ class profileController {
 
     }
     editProfileCustomer(req, res) {
+        const firstname = req.body.firstname;
+        const lastname = req.body.lastname;
+        const age = req.body.age;
+        const address = req.body.address;
+        const phone = req.body.phone;
+
         const projects = req.body.projects;
         const experience = req.body.experience;
          const id = req.body._id;
          console.log(req.body)
-         profile.findOneAndUpdate({_id:id},{projects:projects, experience:experience})
+         user.findOneAndUpdate({_id:id},{firstname:firstname,lastname:lastname,age:age,address:address,phone:phone,projects:projects, experience:experience})
      
          .then(function(result){
              res.status(200).json({message: "Customer detail has been updated sucessfully" })
@@ -76,7 +88,7 @@ class profileController {
     showProfileCompany(req, res) {
       
             const id = req.params.id;
-            profile.findOne({_id : id})
+            user.findOne({_id : id})
             .then(function(data){
                 res.status(200).json(data);
             })
@@ -87,7 +99,7 @@ class profileController {
     }
     showProfileCustomer(req, res) {
         const id = req.params.id;
-        profile.findOne({_id : id})
+        user.findOne({_id : id})
         .then(function(data){
             res.status(200).json(data);
         })

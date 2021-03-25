@@ -1,53 +1,66 @@
 const mongoose = require('mongoose');
 
 //employees
-const registration =mongoose.model('user',{
-    firstname:{
+const registration = mongoose.model('user', {
+    firstname: {
         type: String,
         required: true
     },
-    lastname:{
+    lastname: {
         type: String,
-        required: true        
+        required: true
     },
-    email:{
+    email: {
         type: String,
         required: true,
         unique: true
     },
-    password:{
+    password: {
         type: String
         ,
         required: true
     },
-    address:{
+    address: {
         type: String,
         required: true
 
     },
-    phone:{
+    phone: {
         type: String
     },
-    age:{
-    type: Number,
-    required: true
+    age: {
+        type: Number,
+        required: true
 
     },
-    photo:{
+    photo: {
         type: String
     },
-    role:{
+    role: {
+
+        type: String,
+        enum: ['Company', 'Customer', 'Admin'],
+        default: 'Customer'
+
+    },
+    projects: {
+        type: String
+    },
+    experience: {
+        type: String
+    },
+    company: {
+        type: String
+    },
+    foundedin: {
+        type: String
+    },
     
-    type: String,
-    enum:['Company','Customer','Admin'],
-    default:'Customer'
-
-},
     createdAt: {
-    type: Date,
-    default: Date.now,
-  }
-    
+        type: Date,
+        default: Date.now,
+    }
+
 
 
 })
