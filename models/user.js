@@ -55,7 +55,7 @@ const registration = mongoose.model('user', {
     foundedin: {
         type: String
     },
-    
+
     createdAt: {
         type: Date,
         default: Date.now,

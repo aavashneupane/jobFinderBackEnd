@@ -22,7 +22,29 @@ module.exports.verifyUser = function(req,res, next){
       res.status(401).json({message : "Access is Unauthorized!!"})
      }
  }
- 
+// module.exports.verifyUser = function(request, response, next){
+//     try {
+//       const token = request.headers.authorization.split(" ")[1];
+//       const decoded = jwt.verify(token,'secretkey');
+//       const verifyUser = User.findOne({
+//         _id: decoded.id,
+//         "authTokens.token": token,
+//       });
+//       if (!verifyUser) {
+//         response.status(404).json({ success: false, error: "User not found !" });
+//       } else {
+//         request.token = token;
+//         request.verifyUser = verifyUser;
+//         next();
+//       }
+//     } catch (error) {
+//       console.log("auth.js", error.message);
+//       response
+//         .status(401)
+//         .json({ success: false, error: "Unauthorized. Token Missing !" });
+//     }
+//   }; 
+
  ///second gaurd done
  
  module.exports.verifyAdmin = function(req,res,next){

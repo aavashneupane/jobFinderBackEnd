@@ -1,6 +1,6 @@
 const job = require("../models/jobmodel");
 const applyjob = require("../models/applymodel");
-
+const user = require('../models/user')
 class applyJobController {
 
     applyJob(req, res) {
@@ -13,7 +13,7 @@ class applyJobController {
         const jobdata = new applyjob({
 
             userid: userid,
-            jobid: jobid,
+            jobid: jobid
 
 
         });
@@ -42,6 +42,22 @@ class applyJobController {
             .catch(function (e) {
                 res.status(500).json({ message: e })
             })
+    }
+
+    showMyApplied(req, res){
+        
+        const userid=req.user;
+        applyjob.find({
+            userid:userid
+        })
+        .then(function (data) {
+            res.status(200).json(data);
+            console.log(data);
+        })
+        .catch(function (e) {
+            res.status(500).json({ message: e })
+        })
+        
     }
 
 }

@@ -11,6 +11,7 @@ const jobController = require('../controllers/postJobController');
 const applyJobController = require('../controllers/applyJobController');
 const job = new jobController();
 const jobapply = new applyJobController();
+// const User= require('../models/User');
 
 // add a job
 router.post('/job/add',[
@@ -29,7 +30,7 @@ router.put('/job/update',job.updateJob)
 //get apii
 
 router.get('/job/showall',function(req, res){
-jobs.find()
+jobs.find().populate("creator")
 .then(function(result){
     res.status(200).json(result)
 })
@@ -41,17 +42,20 @@ jobs.find()
 })
 
 //to show single job
-router.get('/job/showSingle/:id',auth.verifyUser,  job.getSinglejob);
+router.get('/job/showSingle/:id',  job.getSinglejob);
 
 
 
 
 
 //apply for a job 
-router.post('/job/applyJob/:id',auth.verifyUser,auth.verifyCompany,jobapply.applyJob);
+router.post('/job/applyJob/:id',auth.verifyUser,auth.verifyCustomer,jobapply.applyJob);
 //show status of job
 router.get('/job/showStatus/:id',auth.verifyUser,auth.verifyCompany||auth.verifyCustomer, jobapply.showStatus);
 
+
+//to show myapplied jobapply
+router.get('/job/showMyApplied',auth.verifyUser,auth.verifyCustomer, jobapply.showStatus);
 
 
 module.exports =router;

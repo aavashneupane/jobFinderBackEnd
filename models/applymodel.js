@@ -14,9 +14,8 @@ const applySchema =new SCHEMA({
         ref: Job
     },
     confirmStatus:{
-    type:Boolean,
-    default: false
-
+    type:String,
+    default: "false"
     },
     createdAt: {
         type: Date,
