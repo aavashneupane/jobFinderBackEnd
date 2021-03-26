@@ -68,10 +68,16 @@ class AuthController{
           }
           // username and password valid
           const token = jwt.sign({userID : userData._id },'secrectkey');
+          const id=userData._id; 
+          const useremail=userData.email; 
+          const role=userData.role;
           res.status(200).json({
             message : "Sucessfully LogIn ",
             token : token,
             success: true,
+            id:id,
+            email:useremail,
+            role:role
           })
           console.log("Status-"+201+": Login sucessfully Done")
 

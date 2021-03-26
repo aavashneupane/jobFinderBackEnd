@@ -24,13 +24,13 @@ router.delete('/job/delete/:pid',auth.verifyUser,auth.verifyCompany,job.deleteJo
 
 
 //update route
-router.put('/job/update',job.updateJob)
+router.put('/job/update',auth.verifyUser,auth.verifyCompany,job.updateJob)
 
 
 //get apii
 
 router.get('/job/showall',function(req, res){
-jobs.find().populate("creator")
+jobs.find().populate('creator')
 .then(function(result){
     res.status(200).json(result)
 })
@@ -53,7 +53,8 @@ router.post('/job/applyJob/:id',auth.verifyUser,auth.verifyCustomer,jobapply.app
 //show status of job
 router.get('/job/showStatus/:id',auth.verifyUser,auth.verifyCompany||auth.verifyCustomer, jobapply.showStatus);
 
-
+//verify applied status job
+router.put('/job/approveJob',auth.verifyUser,auth.verifyCompany,jobapply.approveJob);
 //to show myapplied jobapply
 router.get('/job/showMyApplied',auth.verifyUser,auth.verifyCustomer, jobapply.showStatus);
 

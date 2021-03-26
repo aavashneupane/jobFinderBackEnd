@@ -48,7 +48,7 @@ class profileController {
         const age = req.body.age;
         const address = req.body.address;
         const phone = req.body.phone;
-        
+
         const company = req.body.company;
         const foundedin = req.body.foundedin;
          const id = req.body._id;

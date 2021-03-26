@@ -44,8 +44,23 @@ class applyJobController {
             })
     }
 
+    approveJob(req, res) {
+
+       
+        const confirmStatus = req.body.confirmStatus;
+        const appliedid=req.body._id;
+        // const a=job.findOne({_id : jobid})
+        applyjob.findOneAndUpdate({_id:appliedid},{confirmStatus:confirmStatus})
+            .then(function (result) {
+                res.status(201).json({ message: "applied status has been updated" });
+
+            })
+            .catch(function (err) {
+                res.status(500).json({ message: err });
+            });
+        }
+
     showMyApplied(req, res){
-        
         const userid=req.user;
         applyjob.find({
             userid:userid
