@@ -3,6 +3,7 @@ const job = require("../models/jobmodel");
 class jobController {
     //to add a job
     addJob(req, res) {
+      
         const jobtitle = req.body.jobtitle;
         const jobtype = req.body.jobtype;
         const jobdescription = req.body.jobdescription;

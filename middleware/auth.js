@@ -2,40 +2,42 @@ const jwt =require('jsonwebtoken');
 
 const User = require('../models/user');
 
-module.exports = function(req, res, next) {
-    //get the token from the header if present
-    const token = req.headers["x-access-token"] || req.headers["authorization"];
-    //if no token found, return response (without going to the next middelware)
-    if (!token) return res.status(401).send("Access denied. No token provided.");
+// module.exports = function(req, res, next) {
+//     //get the token from the header if present
+//     const token = req.headers["x-access-token"] || req.headers["authorization"];
+//     //if no token found, return response (without going to the next middelware)
+//     if (!token) return res.status(401).send("Access denied. No token provided.");
   
-    try {
-      //if can verify the token, set req.user and pass to next middleware
-      const decoded = jwt.verify(token, config.get("myprivatekey"));
-      req.user = decoded;
-      next();
-    } catch (ex) {
-      //if invalid token
-      res.status(400).send("Invalid token.");
-    }
-  };
+//     try {
+//       //if can verify the token, set req.user and pass to next middleware
+//       const decoded = jwt.verify(token, config.get("myprivatekey"));
+//       req.user = decoded;
+//       next();
+//     } catch (ex) {
+//       //if invalid token
+//       res.status(400).send("Invalid token.");
+//     }
+//   };
 
 
 module.exports.verifyUser = function(req,res, next){
-    // console.log(req.headers.authorization.split(" ")[1])
+ //   console.log(req.headers.authorization.split(" ")[1])
+    
+    //console.log(decodeData)
      try{
          const token = req.headers.authorization.split(" ")[1];
-         const decodeData = jwt.verify(token, 'secrectkey');
-         //console.log(decodeData)
+         const decodeData = jwt.verify(token, 'secretkey');
+        // console.log(decodeData)
          User.findOne({_id : decodeData.userID})
          .then(function(result){
              ///Success
              req.user = result;
-             req.id=result._id;
-             req.email=result.email
+            //  req.id=result._id;
+            //  req.email=result.email
              
-             console.log(req.user);
-             console.log(req.id);
-             console.log(req.email);
+            //  console.log(req.user);
+            //  console.log(req.id);
+            //  console.log(req.email);
              
              //console.log(result);
              next();
@@ -115,6 +117,7 @@ module.exports.verifyUser = function(req,res, next){
      else if(req.user.role!=='Company'){
          return res.status(401).json({message: "Unauthorized user"});
      }
+     console.log(req.user.role)
  
      next();
  }

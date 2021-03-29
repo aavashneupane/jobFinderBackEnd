@@ -15,7 +15,7 @@ const jobapply = new applyJobController();
 
 // add a job
 router.post('/job/add',[
-
+    
 ],auth.verifyUser,auth.verifyCompany,job.addJob)
 
 
@@ -24,7 +24,7 @@ router.delete('/job/delete/:pid',auth.verifyUser,auth.verifyCompany,job.deleteJo
 
 
 //update route
-router.put('/job/update',auth.verifyUser,auth.verifyCompany,job.updateJob)
+router.put('/job/update',job.updateJob)
 
 
 //get apii
@@ -55,8 +55,13 @@ router.get('/job/showStatus/:id',auth.verifyUser,auth.verifyCompany||auth.verify
 
 //verify applied status job
 router.put('/job/approveJob',auth.verifyUser,auth.verifyCompany,jobapply.approveJob);
+
+
 //to show myapplied jobapply
-router.get('/job/showMyApplied',auth.verifyUser,auth.verifyCustomer, jobapply.showStatus);
+router.get('/job/showMyApplied',auth.verifyUser,auth.verifyCustomer, jobapply.showMyApplied);
+
+//to show mycompany listings
+router.get('/job/showMyListings',auth.verifyUser,auth.verifyCompany, jobapply.showMyListings);
 
 
 module.exports =router;

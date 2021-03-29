@@ -67,7 +67,7 @@ class AuthController{
             console.log("Status-"+401+": Login unsucessfull")
           }
           // username and password valid
-          const token = jwt.sign({userID : userData._id },'secrectkey');
+          const token = jwt.sign({userID : userData._id },'secretkey');
           const id=userData._id; 
           const useremail=userData.email; 
           const role=userData.role;
