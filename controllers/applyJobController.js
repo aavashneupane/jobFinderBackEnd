@@ -63,7 +63,7 @@ class applyJobController {
         const userid=req.user;
         applyjob.find({
             userid:userid
-        })
+        }).populate('userid').populate('jobid')
         .then(function (data) {
             res.status(200).json(data);
             // console.log("applied is "+data.userid);
@@ -72,6 +72,21 @@ class applyJobController {
             res.status(500).json({ message: e })
         })
         
+    }
+
+    deleteMyApplied(req, res) {
+        const pid = req.params.pid;
+        
+        applyjob.deleteOne({
+            _id: pid 
+        })
+        .then(function (data) {
+            res.status(200).json(data);
+             console.log("deleted successfully");
+        })
+        .catch(function (e) {
+            res.status(500).json({ message: e })
+        })
     }
 
 //for company
@@ -90,6 +105,23 @@ showMyListings(req, res){
     })
     
 }
+
+showWhoApplied(req, res){
+    const jobid=req.params.id;
+    const userid=req.user;
+    applyjob.find({
+        jobid:jobid
+    })
+    .then(function (data) {
+        res.status(200).json(data);
+        console.log("applied is "+data);
+    })
+    .catch(function (e) {
+        res.status(500).json({ message: e })
+    })
+    
+}
+
 
 }
 

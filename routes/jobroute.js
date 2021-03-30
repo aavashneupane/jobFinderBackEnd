@@ -49,7 +49,7 @@ router.get('/job/showSingle/:id',  job.getSinglejob);
 
 
 //apply for a job 
-router.post('/job/applyJob/:id',auth.verifyUser,auth.verifyCustomer,jobapply.applyJob);
+router.post('/job/applyJob/:id',auth.verifyUser,jobapply.applyJob);
 //show status of job
 router.get('/job/showStatus/:id',auth.verifyUser,auth.verifyCompany||auth.verifyCustomer, jobapply.showStatus);
 
@@ -59,6 +59,10 @@ router.put('/job/approveJob',auth.verifyUser,auth.verifyCompany,jobapply.approve
 
 //to show myapplied jobapply
 router.get('/job/showMyApplied',auth.verifyUser,auth.verifyCustomer, jobapply.showMyApplied);
+router.delete('/job/deleteMyApplied/:pid',auth.verifyUser, jobapply.deleteMyApplied);
+
+
+router.get('/job/showWhoApplied/:id',auth.verifyUser,auth.verifyCompany, jobapply.showWhoApplied);
 
 //to show mycompany listings
 router.get('/job/showMyListings',auth.verifyUser,auth.verifyCompany, jobapply.showMyListings);
