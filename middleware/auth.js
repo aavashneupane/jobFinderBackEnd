@@ -1,13 +1,13 @@
-const jwt =require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
-const User = require('../models/user');
+const User = require("../models/user");
 
 // module.exports = function(req, res, next) {
 //     //get the token from the header if present
 //     const token = req.headers["x-access-token"] || req.headers["authorization"];
 //     //if no token found, return response (without going to the next middelware)
 //     if (!token) return res.status(401).send("Access denied. No token provided.");
-  
+
 //     try {
 //       //if can verify the token, set req.user and pass to next middleware
 //       const decoded = jwt.verify(token, config.get("myprivatekey"));
@@ -19,38 +19,36 @@ const User = require('../models/user');
 //     }
 //   };
 
+module.exports.verifyUser = function (req, res, next) {
+  //   console.log(req.headers.authorization.split(" ")[1])
+  console.log(req.headers.authorization);
+  //console.log(decodeData)
+  try {
+    const token = req.headers.authorization.split(" ")[1];
 
-module.exports.verifyUser = function(req,res, next){
- //   console.log(req.headers.authorization.split(" ")[1])
-    
-    //console.log(decodeData)
-     try{
-         const token = req.headers.authorization.split(" ")[1];
-         const decodeData = jwt.verify(token, 'secretkey');
-        // console.log(decodeData)
-         User.findOne({_id : decodeData.userID})
-         .then(function(result){
-             ///Success
-             req.user = result;
-            //  req.id=result._id;
-            //  req.email=result.email
-             
-            //  console.log(req.user);
-            //  console.log(req.id);
-            //  console.log(req.email);
-             
-             //console.log(result);
-             next();
-             
-         })
-         .catch(function(err){
-             res.status(401).json({message : err})
-         })
-     }
-     catch(err){
-      res.status(401).json({message : "Access is Unauthorized!!"})
-     }
- }
+    const decodeData = jwt.verify(token, "secretkey");
+    // console.log(decodeData)
+    User.findOne({ _id: decodeData.userID })
+      .then(function (result) {
+        ///Success
+        req.user = result;
+        //  req.id=result._id;
+        //  req.email=result.email
+
+        //  console.log(req.user);
+        //  console.log(req.id);
+        //  console.log(req.email);
+
+        //console.log(result);
+        next();
+      })
+      .catch(function (err) {
+        res.status(401).json({ message: err });
+      });
+  } catch (err) {
+    res.status(401).json({ message: "Access is Unauthorized!!" });
+  }
+};
 //new auth
 // module.exports.verifyUser = async (request, response, next) => {
 //     try {
@@ -95,39 +93,38 @@ module.exports.verifyUser = function(req,res, next){
 //         .status(401)
 //         .json({ success: false, error: "Unauthorized. Token Missing !" });
 //     }
-//   }; 
+//   };
 
- ///second gaurd done
- 
- module.exports.verifyAdmin = function(req,res,next){
-     if(!req.user){
-         return res.status(402).json({message : "Unauthorized user"});
-     }
-     else if(req.user.role!=='Admin'){
-         return res.status(401).json({message: "Unauthorized user"});
-     }
- 
-     next();
- }
- 
- module.exports.verifyCompany = function(req,res,next){
-     if(!req.user){
-         return res.status(402).json({message : "Unauthorized user"});
-     }
-     else if(req.user.role!=='Company'){
-         return res.status(401).json({message: "Unauthorized user"});
-     }
-     console.log(req.user.role)
- 
-     next();
- }
- module.exports.verifyCustomer = function(req,res,next){
-    if(!req.user){
-        return res.status(402).json({message : "Unauthorized customer!!"});
-    }
-    else if(req.user.role!=='Customer'){
-        return res.status(401).json({message: "Unauthorization Acess customer 1"});
-    }
+///second gaurd done
 
-    next();
-}
+module.exports.verifyAdmin = function (req, res, next) {
+  if (!req.user) {
+    return res.status(402).json({ message: "Unauthorized user" });
+  } else if (req.user.role !== "Admin") {
+    return res.status(401).json({ message: "Unauthorized user" });
+  }
+
+  next();
+};
+
+module.exports.verifyCompany = function (req, res, next) {
+  if (!req.user) {
+    return res.status(402).json({ message: "Unauthorized user" });
+  } else if (req.user.role !== "Company") {
+    return res.status(401).json({ message: "Unauthorized user" });
+  }
+  console.log(req.user.role);
+
+  next();
+};
+module.exports.verifyCustomer = function (req, res, next) {
+  if (!req.user) {
+    return res.status(402).json({ message: "Unauthorized customer!!" });
+  } else if (req.user.role !== "Customer") {
+    return res
+      .status(401)
+      .json({ message: "Unauthorization Acess customer 1" });
+  }
+
+  next();
+};
