@@ -4,9 +4,9 @@ const user = require("../models/user");
 class applyJobController {
   applyJob(req, res) {
     const userid = req.user;
-    const jobid = req.params.id;
+    const jobid = req.params.pid;
     // const a=job.findOne({_id : jobid})
-
+    
     const jobdata = new applyjob({
       userid: userid,
       jobid: jobid,
@@ -15,6 +15,7 @@ class applyJobController {
       .save()
       .then(function (result) {
         res.status(201).json({ message: "Job has been applied" });
+        console.log("doneeeeeeeeeeeee")
       })
       .catch(function (err) {
         res.status(500).json({ message: err });
@@ -38,12 +39,13 @@ class applyJobController {
   }
   approveJob(req, res) {
     const confirmStatus = req.body.confirmStatus;
-    const appliedid = req.body._id;
+    const appliedid = req.params.id;
     // const a=job.findOne({_id : jobid})
     applyjob
-      .findOneAndUpdate({ _id: appliedid }, { confirmStatus: confirmStatus })
+      .updateOne({ _id: appliedid }, { confirmStatus: confirmStatus })
       .then(function (result) {
         res.status(201).json({ message: "applied status has been updated" });
+        console.log("Status changed"+result.confirmStatus)
       })
       .catch(function (err) {
         res.status(500).json({ message: err });
@@ -106,10 +108,10 @@ class applyJobController {
     applyjob
       .find({
         jobid: jobid,
-      })
+      }).populate('userid')
       .then(function (data) {
         res.status(200).json(data);
-        console.log("applied is " + data);
+        //console.log("applied is " + data);
       })
       .catch(function (e) {
         res.status(500).json({ message: e });

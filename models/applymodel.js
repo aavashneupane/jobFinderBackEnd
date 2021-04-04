@@ -15,7 +15,7 @@ const applySchema = new SCHEMA({
   },
   confirmStatus: {
     type: String,
-    default: "false",
+    default: "pending",
   },
   createdAt: {
     type: Date,

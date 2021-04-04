@@ -48,7 +48,7 @@ class jobController {
     const jobdescription = req.body.jobdescription;
     const requiredexperience = req.body.requiredexperience;
     const jobprice = req.body.jobprice;
-    const id = req.body._id;
+    const id = req.body.id;
 
     job
       .updateOne(
@@ -71,8 +71,7 @@ class jobController {
   //to show a job
   getSinglejob(req, res) {
     const id = req.params.id;
-    job
-      .findOne({ _id: id })
+    job.findOne({ _id: id })
       .then(function (data) {
         res.status(200).json(data);
       })

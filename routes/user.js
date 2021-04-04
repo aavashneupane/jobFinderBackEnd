@@ -15,20 +15,20 @@ const token = tokenVerification.verifyUser;
 //register api
 router.post(
   "/user/add",
-  [
-    check("firstname", "First Name must be entered").not().isEmpty(),
-    check("lastname", "Last Name must be entered").not().isEmpty(),
-    check("email", "Invalid Email").isEmail(),
-    check("password", "You must enter your password").not().isEmpty(),
-    check("phone", "Invalid Phone Number!!!").isMobilePhone(),
-    check("address", "Address must be entered").not().isEmpty(),
-    check("age", "Invalid age").isNumeric(),
-    check("password", "it must be 8 to 16 length long").isLength({
-      min: 8,
-      max: 16,
-    }),
-  ],
-  auth.register
+  // [
+  //   check("firstname", "First Name must be entered").not().isEmpty(),
+  //   check("lastname", "Last Name must be entered").not().isEmpty(),
+  //   check("email", "Invalid Email").isEmail(),
+  //   check("password", "You must enter your password").not().isEmpty(),
+  //   check("phone", "Invalid Phone Number!!!").isMobilePhone(),
+  //   check("address", "Address must be entered").not().isEmpty(),
+  //   check("age", "Invalid age").isNumeric(),
+  //   check("password", "it must be 8 to 16 length long").isLength({
+  //     min: 8,
+  //     max: 16,
+  //   }),
+  // ],
+  upload.single('photo'),auth.register
 );
 
 //login api call

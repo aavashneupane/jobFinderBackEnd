@@ -43,10 +43,10 @@ router.get(
 );
 
 router.put(
-  "/profile/editProfileCompany",
+  "/profile/editProfileCompany/:id",
   [
-    check("company", "Name must be entered").not().isEmpty(),
-    check("foundedin", "Date must be entered").not().isEmpty(),
+    // check("company", "Name must be entered").not().isEmpty(),
+    // check("foundedin", "Date must be entered").not().isEmpty(),
   ],
   auth.verifyUser,
   auth.verifyCompany,
@@ -54,13 +54,12 @@ router.put(
 );
 
 router.put(
-  "/profile/editProfileCustomer",
+  "/profile/editProfileCustomer/:id",
   [
     check("projects", "Project/s must be entered").not().isEmpty(),
     check("experience", "Experience must be entered").not().isEmpty(),
   ],
-  auth.verifyUser,
-  auth.verifyCustomer,
+ 
   profile.editProfileCustomer
 );
 

@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs"); //third party
 const { check, validationResult } = require("express-validator");
 
+
 class AuthController {
   register(req, res, next) {
     const errors = validationResult(req);
@@ -12,6 +13,10 @@ class AuthController {
       res.status(400).json(errors.array());
     } else {
       //validation error free
+      if(req.file==undefined){
+        return res.status()
+      }
+
       const firstname = req.body.firstname;
       const lastname = req.body.lastname;
       const email = req.body.email;
@@ -20,7 +25,7 @@ class AuthController {
       const address = req.body.address;
       const phone = req.body.phone;
 
-      const photo = req.body.photo;
+      const path = req.file.path;
       const role = req.body.role;
 
       bcrypt.hash(password, 10, function (err, hash) {
@@ -33,6 +38,7 @@ class AuthController {
           age: age,
           address: address,
           phone: phone,
+          photo: path,
           age: age,
           role: role,
         });

@@ -21,11 +21,13 @@ const User = require("../models/user");
 
 module.exports.verifyUser = function (req, res, next) {
   //   console.log(req.headers.authorization.split(" ")[1])
-  console.log(req.headers.authorization);
+  // console.log(req.headers.authorization);
+  const token = req.headers.authorization.split(" ")[1];
+    console.log(token);
   //console.log(decodeData)
   try {
     const token = req.headers.authorization.split(" ")[1];
-
+    console.log(token);
     const decodeData = jwt.verify(token, "secretkey");
     // console.log(decodeData)
     User.findOne({ _id: decodeData.userID })
@@ -46,7 +48,7 @@ module.exports.verifyUser = function (req, res, next) {
         res.status(401).json({ message: err });
       });
   } catch (err) {
-    res.status(401).json({ message: "Access is Unauthorized!!" });
+    res.status(401).json({ message: "Access is Unauthorized1!!" });
   }
 };
 //new auth

@@ -56,13 +56,13 @@ class profileController {
     const age = req.body.age;
     const address = req.body.address;
     const phone = req.body.phone;
-
+    const photo = req.body.photo;
     const company = req.body.company;
     const foundedin = req.body.foundedin;
-    const id = req.body._id;
+    const id = req.params.id;
     console.log(req.body);
     user
-      .findOneAndUpdate(
+      .updateOne(
         { _id: id },
         {
           firstname: firstname,
@@ -70,6 +70,7 @@ class profileController {
           age: age,
           address: address,
           phone: phone,
+          photo: photo,
           company: company,
           foundedin: foundedin,
         }
@@ -79,9 +80,11 @@ class profileController {
         res
           .status(200)
           .json({ message: "Company detail has been updated sucessfully" });
+          console.log("updated"+result.age);
       })
       .catch(function (e) {
         res.status(500).json({ message: e });
+        console.log("unsuccessfull"+e);
       });
   }
   editProfileCustomer(req, res) {
@@ -90,13 +93,13 @@ class profileController {
     const age = req.body.age;
     const address = req.body.address;
     const phone = req.body.phone;
-
+    const photo = req.body.photo;
     const projects = req.body.projects;
     const experience = req.body.experience;
-    const id = req.body._id;
-    console.log(req.body);
+    const id = req.body.id;
+    
     user
-      .findOneAndUpdate(
+      .findByIdAndUpdate(
         { _id: id },
         {
           firstname: firstname,
@@ -104,6 +107,7 @@ class profileController {
           age: age,
           address: address,
           phone: phone,
+          photo: photo,
           projects: projects,
           experience: experience,
         }
@@ -113,6 +117,7 @@ class profileController {
         res
           .status(200)
           .json({ message: "Customer detail has been updated sucessfully" });
+          console.log("Updated?");
       })
       .catch(function (e) {
         res.status(500).json({ message: e });

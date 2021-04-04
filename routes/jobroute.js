@@ -24,7 +24,7 @@ router.delete(
 );
 
 //update route
-router.put("/job/update", job.updateJob);
+router.put("/job/update/:id", job.updateJob);
 
 //get apii
 
@@ -44,7 +44,7 @@ router.get("/job/showall", function (req, res) {
 router.get("/job/showSingle/:id", job.getSinglejob);
 
 //apply for a job
-router.post("/job/applyJob/:id", auth.verifyUser, jobapply.applyJob);
+router.post("/job/applyJob/:pid", auth.verifyUser,auth.verifyCustomer, jobapply.applyJob);
 //show status of job
 router.get(
   "/job/showStatus/:id",
@@ -55,7 +55,7 @@ router.get(
 
 //verify applied status job
 router.put(
-  "/job/approveJob",
+  "/job/approveJob/:id",
   auth.verifyUser,
   auth.verifyCompany,
   jobapply.approveJob
