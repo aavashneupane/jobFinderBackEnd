@@ -34,6 +34,7 @@ router.get(
   auth.verifyUser,
   auth.verifyCompany,
   profile.showProfileCompany
+
 );
 router.get(
   "/profile2",

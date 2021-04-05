@@ -32,7 +32,7 @@ const registration = mongoose.model("user", {
   },
   photo: {
     type: String,
-    default: "dp_placeholder.png"
+    default: "user.jpg"
   },
   role: {
     type: String,

@@ -93,6 +93,7 @@ class AuthController {
           const role = userData.role;
           const firstname = userData.firstname;
           const lastname = userData.lastname;
+          const photo = userData.photo;
           res.status(200).json({
             message: "Sucessfully LogIn ",
             token: token,
@@ -101,6 +102,7 @@ class AuthController {
             email: useremail,
             firstName: firstname,
             lastName: lastname,
+            photo: photo,
             role: role,
           });
           console.log("Status-" + 201 + ": Login sucessfully Done");
