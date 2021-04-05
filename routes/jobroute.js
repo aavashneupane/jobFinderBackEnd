@@ -5,6 +5,7 @@ const { check, validationResult } = require("express-validator");
 const jobs = require("../models/jobmodel");
 //const auth =require('../middleware/middleware');
 const auth = require("../middleware/auth");
+const upload = require("../middleware/uploads");
 
 const jobController = require("../controllers/postJobController");
 const applyJobController = require("../controllers/applyJobController");
@@ -13,13 +14,13 @@ const jobapply = new applyJobController();
 // const User= require('../models/User');
 
 // add a job
-router.post("/job/add", [], auth.verifyUser, auth.verifyCompany, job.addJob);
+router.post("/job/add", [],upload.single('photo'), auth.verifyUser, auth.verifyCompany, job.addJob);
 
 //delete job
 router.delete(
   "/job/delete/:pid",
   auth.verifyUser,
-  auth.verifyCompany,
+  (auth.verifyAdmin||auth.verifyCompany),
   job.deleteJob
 );
 

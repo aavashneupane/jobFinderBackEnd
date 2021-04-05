@@ -17,10 +17,12 @@ const db = require("./database/db");
 const user = require("./routes/user");
 const profileRoute = require("./routes/profileRoute");
 const jobroute = require("./routes/jobroute");
+const extraRoute = require("./routes/extraRoute");
 
 app.use(user);
 app.use(profileRoute);
 app.use(jobroute);
+app.use(extraRoute);
 
 app.listen(91, () => {
   console.log("Server running at 91.");

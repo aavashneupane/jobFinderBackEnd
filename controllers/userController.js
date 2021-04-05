@@ -8,16 +8,16 @@ class userController {
     const lastname = req.body.lastname;
     const email = req.body.email;
     const query = req.body.query;
-    const creator = req.user;
+    const userid = req.user;
 
-    const jobdata = new job({
+    const querydata = new queries({
       firstname: firstname,
       lastname: lastname,
       email: email,
       query: query,
-      creator: creator,
+      userid: userid,
     });
-    jobdata
+    querydata
       .save()
       .then(function (result) {
         res.status(201).json({ message: "Your feddback has been sent to the admin." });
@@ -27,6 +27,33 @@ class userController {
       });
   }
 
+  showAllQuery(req,res){
+    queries
+    .find()
+    .populate('userid')
+    .then(function (result) {
+      res.status(200).json(result);
+    })
+    .catch(function (err) {
+      res.status(500).json({ message: err });
+    });
+  }
+
+  deleteQuery(req, res) {
+    const pid = req.params.pid;
+
+    queries
+      .deleteOne({
+        _id: pid,
+      })
+      .then(function (data) {
+        res.status(200).json(data);
+        console.log("deleted successfully");
+      })
+      .catch(function (e) {
+        res.status(500).json({ message: e });
+      });
+  }
   
 }
 

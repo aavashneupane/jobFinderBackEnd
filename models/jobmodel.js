@@ -20,6 +20,10 @@ const jobSchema = new SCHEMA({
   jobprice: {
     type: String,
   },
+  photo: {
+    type: String,
+    default: "user.jpg"
+  },
   creator: {
     type: SCHEMA.Types.ObjectId,
     ref: User,

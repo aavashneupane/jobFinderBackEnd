@@ -51,6 +51,7 @@ class profileController {
   }
 
   editProfileCompany(req, res) {
+    
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const age = req.body.age;
@@ -59,6 +60,7 @@ class profileController {
     const photo = req.body.photo;
     const company = req.body.company;
     const foundedin = req.body.foundedin;
+    const path = req.file.path;
     const id = req.params.id;
     console.log(req.body);
     user
@@ -70,7 +72,7 @@ class profileController {
           age: age,
           address: address,
           phone: phone,
-          photo: photo,
+          photo: path,
           company: company,
           foundedin: foundedin,
         }
@@ -88,15 +90,20 @@ class profileController {
       });
   }
   editProfileCustomer(req, res) {
+    if(req.file==undefined){
+      return res.status()
+    }
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const age = req.body.age;
     const address = req.body.address;
     const phone = req.body.phone;
-    const photo = req.body.photo;
+    // const path = req.file.path;
+    const resume = req.file.path;
     const projects = req.body.projects;
     const experience = req.body.experience;
-    const id = req.body.id;
+    const userbio = req.body.userbio;
+    const id = req.params.id;
     
     user
       .findByIdAndUpdate(
@@ -107,7 +114,9 @@ class profileController {
           age: age,
           address: address,
           phone: phone,
-          photo: photo,
+          // photo: path,
+          resume: resume,
+          userbio:userbio,
           projects: projects,
           experience: experience,
         }

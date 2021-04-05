@@ -92,7 +92,7 @@ class applyJobController {
     job
       .find({
         creator: userid,
-      })
+      }).populate('creator')
       .then(function (data) {
         res.status(200).json(data);
         // console.log("applied is "+data.userid);

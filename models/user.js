@@ -51,7 +51,12 @@ const registration = mongoose.model("user", {
   foundedin: {
     type: String,
   },
+  userbio:{
+    type: String,
+  },
+  resume: {
 
+  },
   createdAt: {
     type: Date,
     default: Date.now,

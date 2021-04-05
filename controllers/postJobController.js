@@ -3,12 +3,17 @@ const job = require("../models/jobmodel");
 class jobController {
   //to add a job
   addJob(req, res) {
+    
+    if(req.file==undefined){
+      return res.status()
+    }
     const jobtitle = req.body.jobtitle;
     const jobtype = req.body.jobtype;
     const jobdescription = req.body.jobdescription;
     const requiredexperience = req.body.requiredexperience;
     const jobprice = req.body.jobprice;
     const creator = req.user;
+    const path = req.file.path;
 
     const jobdata = new job({
       jobtitle: jobtitle,
@@ -16,6 +21,7 @@ class jobController {
       jobdescription: jobdescription,
       requiredexperience: requiredexperience,
       jobprice: jobprice,
+      photo: path,
       creator: creator,
     });
     jobdata

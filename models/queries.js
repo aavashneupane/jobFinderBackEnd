@@ -8,6 +8,7 @@ const queriesSchema = new SCHEMA({
     userid: {
         type: SCHEMA.Types.ObjectId,
         ref: User,
+        default:'6055e7e6c8fffb1cf89ac021'
     },
     firstname: {
         type: String,
@@ -15,6 +16,7 @@ const queriesSchema = new SCHEMA({
     lastname: {
         type: String,
     },
+    
     email: {
         type: String,
     },
