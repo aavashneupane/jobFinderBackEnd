@@ -66,4 +66,13 @@ router.put(
   profile.editProfileCustomer
 );
 
+
+router.put(
+  "/profile/editProfileCustomer2/:id",
+ 
+  profile.editProfileCustomer2
+);
+
+
+
 module.exports = router;

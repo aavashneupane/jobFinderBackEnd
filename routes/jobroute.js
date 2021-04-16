@@ -33,8 +33,8 @@ router.get("/job/showall", function (req, res) {
   jobs
     .find()
     .populate("creator")
-    .then(function (result) {
-      res.status(200).json(result);
+    .then(function (data) {
+      res.status(200).json({success: true, data});
     })
     .catch(function (err) {
       res.status(500).json({ message: err });

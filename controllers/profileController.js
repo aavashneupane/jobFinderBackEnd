@@ -51,7 +51,7 @@ class profileController {
   }
 
   editProfileCompany(req, res) {
-    
+
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const age = req.body.age;
@@ -82,15 +82,15 @@ class profileController {
         res
           .status(200)
           .json({ message: "Company detail has been updated sucessfully" });
-          console.log("updated"+result.age);
+        console.log("updated" + result.age);
       })
       .catch(function (e) {
         res.status(500).json({ message: e });
-        console.log("unsuccessfull"+e);
+        console.log("unsuccessfull" + e);
       });
   }
   editProfileCustomer(req, res) {
-    if(req.file==undefined){
+    if (req.file == undefined) {
       return res.status()
     }
     const firstname = req.body.firstname;
@@ -104,7 +104,7 @@ class profileController {
     const experience = req.body.experience;
     const userbio = req.body.userbio;
     const id = req.params.id;
-    
+
     user
       .findByIdAndUpdate(
         { _id: id },
@@ -116,7 +116,7 @@ class profileController {
           phone: phone,
           // photo: path,
           resume: resume,
-          userbio:userbio,
+          userbio: userbio,
           projects: projects,
           experience: experience,
         }
@@ -126,12 +126,53 @@ class profileController {
         res
           .status(200)
           .json({ message: "Customer detail has been updated sucessfully" });
-          console.log("Updated?");
+        console.log("Updated?");
       })
       .catch(function (e) {
         res.status(500).json({ message: e });
       });
   }
+
+
+  editProfileCustomer2(req, res) {
+
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const age = req.body.age;
+    const address = req.body.address;
+    const phone = req.body.phone;
+    const projects = req.body.projects;
+    const experience = req.body.experience;
+    const userbio = req.body.userbio;
+    const id = req.params.id;
+
+    user
+      .findByIdAndUpdate(
+        { _id: id },
+        {
+          firstname: firstname,
+          lastname: lastname,
+          age: age,
+          address: address,
+          phone: phone,
+            userbio: userbio,
+          projects: projects,
+          experience: experience,
+
+        }
+      )
+
+      .then(function (data) {
+        res
+          .status(200)
+          .json({ success: true,message:"Updated Sucessfully", data });
+        console.log("Updated?");
+      })
+      .catch(function (e) {
+        res.status(500).json({ message: e });
+      });
+  }
+
 
   showProfileCompany(req, res) {
     const id = req.user;
@@ -152,7 +193,7 @@ class profileController {
     user
       .findOne({ _id: id })
       .then(function (data) {
-        res.status(200).json(data);
+        res.status(200).json({ success: true, data });
       })
       .catch(function (e) {
         res.status(500).json({ message: e });

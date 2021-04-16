@@ -13,8 +13,8 @@ class applyJobController {
     });
     jobdata
       .save()
-      .then(function (result) {
-        res.status(201).json({ message: "Job has been applied" });
+      .then(function (data) {
+        res.status(201).json({success: true, data});
         console.log("doneeeeeeeeeeeee")
       })
       .catch(function (err) {
@@ -58,10 +58,10 @@ class applyJobController {
       .find({
         userid: userid,
       })
-      .populate("userid")
-      .populate("jobid")
+      // .populate("userid")
+      // .populate("jobid")
       .then(function (data) {
-        res.status(200).json(data);
+        res.status(200).json({success: true, data});
         // console.log("applied is "+data.userid);
       })
       .catch(function (e) {

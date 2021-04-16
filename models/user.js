@@ -55,7 +55,7 @@ const registration = mongoose.model("user", {
     type: String,
   },
   resume: {
-
+    type:String,
   },
   createdAt: {
     type: Date,
