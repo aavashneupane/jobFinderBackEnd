@@ -13,8 +13,7 @@ const filefilter = function (req, file, cb) {
   if (
     file.mimetype == "image/jpeg" ||
     file.mimetype == "image/gif" ||
-    file.mimetype == "image/png" ||
-    file.mimetype == "application/pdf"
+    file.mimetype == "image/png"
   ) {
     cb(null, true);
   } else {

@@ -3,6 +3,7 @@ const router = express.Router(); ///function
 const { check, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
 const upload = require("../middleware/uploads");
+const upload2 = require("../middleware/uploads2");
 const profileController = require("../controllers/profileController");
 const profile = new profileController();
 
@@ -43,6 +44,14 @@ router.get(
   profile.showProfileCustomer
 );
 
+router.get(
+  "/profile",
+  auth.verifyUser,
+  auth.verifyCustomer,
+  profile.showProfileCustomer2
+);
+
+
 router.put(
   "/profile/editProfileCompany/:id",
   [
@@ -66,10 +75,25 @@ router.put(
   profile.editProfileCustomer
 );
 
+router.put(
+  "/profile/editResume/:id",
+  [
+    check("resume", "You must upload").not().isEmpty(),
+    
+  ],
+  upload2.single('resume'),
+  profile.editResume
+);
+router.put(
+  "/profile/editPicture/:id",
+  upload.single('photo'),
+  profile.editPicture2
+);
+
 
 router.put(
   "/profile/editProfileCustomer2/:id",
- 
+  
   profile.editProfileCustomer2
 );
 

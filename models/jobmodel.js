@@ -22,7 +22,7 @@ const jobSchema = new SCHEMA({
   },
   photo: {
     type: String,
-    default: "user.jpg"
+  //  default: "user.jpg"
   },
   creator: {
     type: SCHEMA.Types.ObjectId,

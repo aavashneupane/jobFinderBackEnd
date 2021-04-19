@@ -20,7 +20,6 @@ router.post("/job/add", [],upload.single('photo'), auth.verifyUser, auth.verifyC
 router.delete(
   "/job/delete/:pid",
   auth.verifyUser,
-  (auth.verifyAdmin||auth.verifyCompany),
   job.deleteJob
 );
 
@@ -34,6 +33,7 @@ router.get("/job/showall", function (req, res) {
     .find()
     .populate("creator")
     .then(function (data) {
+      
       res.status(200).json({success: true, data});
     })
     .catch(function (err) {
@@ -41,11 +41,40 @@ router.get("/job/showall", function (req, res) {
     });
 });
 
+router.get("/job/showall2", function (req, res) {
+  jobs
+    .find()
+    .populate("creator")
+    .then(function (data) {
+      
+      res.status(200).json(data);
+    })
+    .catch(function (err) {
+      res.status(500).json({ message: err });
+    });
+});
+
+
 //to show single job
 router.get("/job/showSingle/:id", job.getSinglejob);
+//to show single web
+router.get("/job/showSingle2/:id", job.getSinglejob2);
 
 //apply for a job
 router.post("/job/applyJob/:pid", auth.verifyUser,auth.verifyCustomer, jobapply.applyJob);
+
+//apply for a job2
+router.post("/job/applyJob2/:pid", auth.verifyUser,auth.verifyCustomer, jobapply.applyJob2);
+
+//show status of job
+router.get(
+  "/job/showStatus/:id",
+  auth.verifyUser,
+  auth.verifyCompany || auth.verifyCustomer,
+  jobapply.showStatus
+);
+
+
 //show status of job
 router.get(
   "/job/showStatus/:id",
@@ -69,6 +98,18 @@ router.get(
   auth.verifyCustomer,
   jobapply.showMyApplied
 );
+
+//web
+router.get(
+  "/job/showMyApplied2",
+  auth.verifyUser,
+  auth.verifyCustomer,
+  jobapply.showMyApplied2
+);
+
+
+
+
 router.delete(
   "/job/deleteMyApplied/:pid",
   auth.verifyUser,

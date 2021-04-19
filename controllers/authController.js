@@ -39,7 +39,7 @@ class AuthController {
           address: address,
           phone: phone,
           photo: path,
-          age: age,
+         
           role: role,
         });
         me.save()
@@ -58,6 +58,58 @@ class AuthController {
       });
     }
   }
+  register2(req, res, next) {
+    const errors = validationResult(req);
+    //  console.log(errors.array())
+    // if not empty
+    if (!errors.isEmpty()) {
+      res.status(400).json(errors.array());
+    } else {
+   
+
+      const firstname = req.body.firstname;
+      const lastname = req.body.lastname;
+      const email = req.body.email;
+      const password = req.body.password;
+      const age = req.body.age;
+      const address = req.body.address;
+      const phone = req.body.phone;
+
+     
+      const role = req.body.role;
+
+      bcrypt.hash(password, 10, function (err, hash) {
+        //console.log(hash)
+        const me = new user({
+          firstname: firstname,
+          lastname: lastname,
+          email: email,
+          password: hash,
+          age: age,
+          address: address,
+          phone: phone,
+     
+         
+          role: role,
+        });
+        me.save()
+          .then(function (Result) {
+     
+            res
+              .status(201)
+              .json({ message: "Registration sucessfull Done", success: true });
+            console.log("Status-" + 201 + ": Registration sucessfull Done");
+          })
+          .catch(function (e) {
+            res.status(500).json({ message: e });
+
+            console.log("Status-" + 500 + e);
+          });
+      });
+    }
+  }
+
+  
 
   login(req, res) {
     const email = req.body.email;

@@ -89,17 +89,70 @@ class profileController {
         console.log("unsuccessfull" + e);
       });
   }
-  editProfileCustomer(req, res) {
+
+  editResume(req, res) {
     if (req.file == undefined) {
       return res.status()
     }
+    // const path = req.file.path;
+    const resume = req.file.path;
+    const id = req.params.id;
+
+    user
+      .findByIdAndUpdate(
+        { _id: id },
+        {
+          resume: resume,
+        }
+      )
+
+      .then(function (result) {
+        res
+          .status(200)
+          .json({ message: "Resume has been updated sucessfully" });
+        console.log("Updated?");
+      })
+      .catch(function (e) {
+        res.status(500).json({ message: e });
+      });
+  }
+
+  editPicture2(req, res) {
+    if (req.file == undefined) {
+      return res.status()
+    }
+    const path = req.file.path;
+    const id = req.params.id;
+    user
+      .findByIdAndUpdate(
+        { _id: id },
+        {
+          photo: path,
+        }
+      )
+
+      .then(function (data) {
+        res
+          .status(200)
+          .json({ success: true, data });
+        console.log("Updated?");
+      })
+      .catch(function (e) {
+        res.status(500).json({ message: e });
+      });
+  }
+
+  editProfileCustomer(req, res) {
+    // if (req.file == undefined) {
+    //   return res.status()
+    // }
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const age = req.body.age;
     const address = req.body.address;
     const phone = req.body.phone;
     // const path = req.file.path;
-    const resume = req.file.path;
+   // const resume = req.file.path;
     const projects = req.body.projects;
     const experience = req.body.experience;
     const userbio = req.body.userbio;
@@ -115,7 +168,7 @@ class profileController {
           address: address,
           phone: phone,
           // photo: path,
-          resume: resume,
+      //    resume: resume,
           userbio: userbio,
           projects: projects,
           experience: experience,
@@ -193,12 +246,26 @@ class profileController {
     user
       .findOne({ _id: id })
       .then(function (data) {
-        res.status(200).json({ success: true, data });
+        res.status(200).json({success: true,data});
       })
       .catch(function (e) {
         res.status(500).json({ message: e });
       });
   }
+
+  showProfileCustomer2(req, res) {
+    const id = req.user;
+    user
+      .findOne({ _id: id })
+      .then(function (data) {
+        res.status(200).json(data);
+      })
+      .catch(function (e) {
+        res.status(500).json({ message: e });
+      });
+  }
+
+
 }
 
 module.exports = profileController;

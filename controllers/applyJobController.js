@@ -22,6 +22,26 @@ class applyJobController {
       });
   }
 
+  applyJob2(req, res) {
+    const userid = req.user;
+    const jobid = req.params.pid;
+    // const a=job.findOne({_id : jobid})
+    
+    const jobdata = new applyjob({
+      userid: userid,
+      jobid: jobid,
+    });
+    jobdata
+      .save()
+      .then(function (data) {
+        res.status(201).json(data);
+        console.log("doneeeeeeeeeeeee")
+      })
+      .catch(function (err) {
+        res.status(500).json({ message: err });
+      });
+  }
+
   showStatus(req, res) {
     const userid = req.user;
     const appliedid = req.params.id;
@@ -54,14 +74,47 @@ class applyJobController {
 
   showMyApplied(req, res) {
     const userid = req.user;
+    var arr=[]
     applyjob
       .find({
         userid: userid,
       })
-      // .populate("userid")
-      // .populate("jobid")
+       .populate("userid")
+      .populate("jobid")
       .then(function (data) {
-        res.status(200).json({success: true, data});
+        data.map(data=>{
+          arr.push({
+              _id: data._id,
+              jobtitle: data.jobid.jobtitle,
+              jobtype: data.jobid.jobtype,
+              confirmStatus: data.confirmStatus,
+              createdAt: data.createdAt,
+              company: data.jobid.creator.company,
+              
+              
+              
+          }) 
+        })
+        res.status(200).json({success: true, data:arr});
+        // console.log("applied is "+data.userid);
+      })
+      .catch(function (e) {
+        res.status(500).json({ message: e });
+      });
+  }
+
+  showMyApplied2(req, res) {
+    const userid = req.user;
+    var arr=[]
+    applyjob
+      .find({
+        userid: userid,
+      })
+       .populate("userid")
+      .populate("jobid")
+      .then(function (data) {
+         
+        res.status(200).json(data);
         // console.log("applied is "+data.userid);
       })
       .catch(function (e) {
@@ -109,6 +162,7 @@ class applyJobController {
       .find({
         jobid: jobid,
       }).populate('userid')
+      .populate('jobid')
       .then(function (data) {
         res.status(200).json(data);
         //console.log("applied is " + data);

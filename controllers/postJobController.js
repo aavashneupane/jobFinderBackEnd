@@ -78,13 +78,29 @@ class jobController {
   getSinglejob(req, res) {
     const id = req.params.id;
     job.findOne({ _id: id })
+    .populate('creator')
       .then(function (data) {
-        res.status(200).json(data);
+        res.status(200).json({success: true,data: data});
       })
       .catch(function (e) {
         res.status(500).json({ message: e });
       });
   }
+
+//to show a jobweb
+getSinglejob2(req, res) {
+  const id = req.params.id;
+  job.findOne({ _id: id })
+  .populate('creator')
+    .then(function (data) {
+      res.status(200).json(data);
+    })
+    .catch(function (e) {
+      res.status(500).json({ message: e });
+    });
+}
+
+
 }
 
 module.exports = jobController;
