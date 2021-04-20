@@ -5,20 +5,23 @@ const SCHEMA = mongoose.Schema;
 const jobSchema = new SCHEMA({
   jobtitle: {
     type: String,
-    //  required: true
+     required: true
   },
   jobtype: {
     type: String,
+    required: true
   },
   jobdescription: {
     type: String,
-    //  required: true,
+     required: true,
   },
   requiredexperience: {
     type: String,
+    required: true
   },
   jobprice: {
     type: String,
+    required: true
   },
   photo: {
     type: String,

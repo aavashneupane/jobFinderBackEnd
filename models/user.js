@@ -4,11 +4,11 @@ const mongoose = require("mongoose");
 const registration = mongoose.model("user", {
   firstname: {
     type: String,
-    // required: true,
+    required: true,
   },
   lastname: {
     type: String,
-    // required: true,
+    required: true,
   },
   email: {
     type: String,
@@ -17,14 +17,15 @@ const registration = mongoose.model("user", {
   },
   password: {
     type: String,
-    // required: true,
+    required: true,
   },
   address: {
     type: String,
-    // required: true,
+    required: true,
   },
   phone: {
     type: String,
+    required: true
   },
   age: {
     type: Number,

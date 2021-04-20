@@ -12,6 +12,7 @@ const queriesSchema = new SCHEMA({
     },
     firstname: {
         type: String,
+        
     },
     lastname: {
         type: String,
